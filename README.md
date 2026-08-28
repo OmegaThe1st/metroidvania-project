@@ -1,2 +1,2 @@
-# metroidvania-project
+Metroidvania Project
 
