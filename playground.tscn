@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://chyg581spgt4y"]
+
+[ext_resource type="Texture2D" uid="uid://dboiw0u5t716f" path="res://metroid.png" id="1_rupst"]
+
+[node name="Node2D" type="Node2D" unique_id=1417168272]
+
+[node name="Metroid" type="Sprite2D" parent="." unique_id=1593096027]
+position = Vector2(239, 111)
+texture = ExtResource("1_rupst")
