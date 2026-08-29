@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dggotlld8rxeo" path="res://player/states/idle.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://i0xid0c5dl3q" path="res://player/states/jump.gd" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://bv06dkb6hp6nq" path="res://player/states/run.gd" id="2_yw30f"]
-[ext_resource type="Script" uid="uid://b77emwapphgyv" path="res://player/states/fall.gd" id="3_yw30f"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cgl41"]
 size = Vector2(18, 48)
@@ -27,19 +26,15 @@ shape = SubResource("RectangleShape2D_k14d1")
 unique_name_in_owner = true
 script = ExtResource("1_rkbax")
 
-[node name="Jump" type="Node" parent="States" unique_id=1842767904]
-unique_name_in_owner = true
-script = ExtResource("2_g1dw6")
-
-[node name="Fall" type="Node" parent="States" unique_id=1000561084]
-unique_name_in_owner = true
-script = ExtResource("3_yw30f")
-
 [node name="Run" type="Node" parent="States" unique_id=311612110]
 unique_name_in_owner = true
 script = ExtResource("2_yw30f")
 
-[node name="State Indicator" type="Label" parent="." unique_id=626290994]
+[node name="Jump" type="Node" parent="States" unique_id=1842767904]
+unique_name_in_owner = true
+script = ExtResource("2_g1dw6")
+
+[node name="Label" type="Label" parent="." unique_id=626290994]
 offset_left = -19.0
 offset_top = -72.0
 offset_right = 21.0

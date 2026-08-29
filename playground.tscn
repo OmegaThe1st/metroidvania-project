@@ -83,3 +83,5 @@ shape = SubResource("RectangleShape2D_k14d1")
 [node name="Player" parent="." unique_id=1662688045 instance=ExtResource("1_wt17y")]
 position = Vector2(44, 117)
 script = ExtResource("2_m8u5f")
+JUMP_VELOCITY = -400.0
+GLIDE_SPEED = 100.0
