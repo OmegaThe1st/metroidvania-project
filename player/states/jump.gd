@@ -7,6 +7,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
+	player.animated_sprite_2d.play("jump")
 	player.velocity.y = JUMP_VELOCITY
 
 
@@ -22,9 +23,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 
 # what happens each process tick in this state
 func process(_delta: float) -> PlayerState:
-	if player.is_on_floor():
-		return idle
-	elif player.velocity.y >= 0:
+	if player.velocity.y >= 0:
 		return fall
 	return next_state
 

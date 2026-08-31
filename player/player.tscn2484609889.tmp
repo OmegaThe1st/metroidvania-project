@@ -7,6 +7,15 @@
 [ext_resource type="Script" uid="uid://5a5q2nequhjr" path="res://player/states/crouch.gd" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dmy3kqqs0tgad" path="res://player/sprites/hero.png" id="6_g6k8r"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cgl41"]
+size = Vector2(18, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k14d1"]
+size = Vector2(18, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
+size = Vector2(18, 28)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
 atlas = ExtResource("6_g6k8r")
 region = Rect2(320, 80, 80, 80)
@@ -23,6 +32,10 @@ region = Rect2(480, 80, 80, 80)
 atlas = ExtResource("6_g6k8r")
 region = Rect2(560, 80, 80, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(800, 80, 80, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
 atlas = ExtResource("6_g6k8r")
 region = Rect2(880, 80, 80, 80)
@@ -35,17 +48,13 @@ region = Rect2(960, 80, 80, 80)
 atlas = ExtResource("6_g6k8r")
 region = Rect2(0, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
 atlas = ExtResource("6_g6k8r")
 region = Rect2(640, 80, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
-atlas = ExtResource("6_g6k8r")
-region = Rect2(720, 80, 80, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
 atlas = ExtResource("6_g6k8r")
-region = Rect2(800, 80, 80, 80)
+region = Rect2(720, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
 atlas = ExtResource("6_g6k8r")
@@ -100,6 +109,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wodsf")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_32hag")
 }, {
 "duration": 1.0,
@@ -118,9 +130,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wodsf")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e7oew")
 }, {
@@ -161,32 +170,20 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6k8r"]
-radius = 8.0
-height = 46.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
-height = 28.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgl41"]
-size = Vector2(16, 3)
-
 [node name="Player" type="CharacterBody2D" unique_id=1662688045]
-floor_constant_speed = true
-floor_snap_length = 3.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1878614252]
-position = Vector2(0, -41)
-sprite_frames = SubResource("SpriteFrames_k14d1")
-animation = &"jump"
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=680367329]
+visible = false
+position = Vector2(0, -24)
+texture = SubResource("PlaceholderTexture2D_cgl41")
 
 [node name="Stand" type="CollisionShape2D" parent="." unique_id=178748155]
-position = Vector2(-1, -25)
-shape = SubResource("CapsuleShape2D_g6k8r")
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_k14d1")
 
 [node name="Crouch" type="CollisionShape2D" parent="." unique_id=9840073]
-position = Vector2(-1, -16)
-shape = SubResource("CapsuleShape2D_boad6")
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_qjkh3")
 disabled = true
 debug_color = Color(1.9853935e-07, 0.1697118, 0.20469168, 0.41960785)
 
@@ -221,13 +218,13 @@ offset_bottom = -63.0
 text = "Label"
 horizontal_alignment = 1
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1402363459]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_cgl41")
-target_position = Vector2(0, 6)
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=474395164]
+target_position = Vector2(0, 4)
 collision_mask = 2
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=802706230]
-position = Vector2(100, -50)
-position_smoothing_enabled = true
-rotation_smoothing_speed = 1.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1878614252]
+position = Vector2(0, -41)
+sprite_frames = SubResource("SpriteFrames_k14d1")
+animation = &"crouch"
+frame = 3
+frame_progress = 1.0

@@ -15,11 +15,23 @@ var previous_state: PlayerState:
 
 #region Standard Variables
 var direction: Vector2 = Vector2(0, 0)
-var last_direction: Vector2
 var gravity: float = 980
-
+var gravity_multiplier: float = 1.0
 #endregion
 
+# Player Sprite
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
+# Player Hitbox
+@onready var stand: CollisionShape2D = $Stand
+@onready var crouch: CollisionShape2D = $Crouch
+@onready var shape_cast_2d: ShapeCast2D = $ShapeCast2D
+
+# Camera
+@onready var camera_2d: Camera2D = $Camera2D
+@onready var CAMERA_X: int = camera_2d.position.x
+@onready var CAMERA_Y: int = camera_2d.position.y
 
 func _ready() -> void:
 	initialize_states()
@@ -38,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += gravity * _delta
+		velocity.y += gravity * _delta * gravity_multiplier
 	move_and_slide()
 	change_state(current_state.physics_process(_delta))
 
@@ -53,7 +65,6 @@ func initialize_states() -> void:
 			c.player = self
 	
 	if states.size() == 0:
-		print("x")
 		return
 	
 	# intialize all states
@@ -64,7 +75,7 @@ func initialize_states() -> void:
 	change_state(current_state)
 	current_state.enter()
 	$"State Indicator".text = current_state.name
-	
+
 func change_state(new_state: PlayerState) -> void:
 	if new_state == null:
 		return
@@ -82,5 +93,15 @@ func change_state(new_state: PlayerState) -> void:
 
 func update_direction() -> void:
 	# var prev_direction: Vector2 = direction
+	var prev_direction: Vector2 = direction
+	
 	direction = Input.get_vector("left", "right", "up", "down")
-	pass
+	
+	if prev_direction != direction:
+		if direction.x < 0:
+			animated_sprite_2d.flip_h = true
+		if direction.x > 0:
+			animated_sprite_2d.flip_h = false
+
+func shift_camera(distance: int):
+	camera_2d.position.y += distance
