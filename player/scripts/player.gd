@@ -20,7 +20,8 @@ var gravity_multiplier: float = 1.0
 #endregion
 
 # Player Sprite
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # Player Hitbox
@@ -99,9 +100,9 @@ func update_direction() -> void:
 	
 	if prev_direction != direction:
 		if direction.x < 0:
-			animated_sprite_2d.flip_h = true
+			sprite_2d.flip_h = true
 		if direction.x > 0:
-			animated_sprite_2d.flip_h = false
+			sprite_2d.flip_h = false
 
 func shift_camera(distance: int):
 	camera_2d.position.y += distance

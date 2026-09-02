@@ -6,7 +6,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	player.animated_sprite_2d.play("crouch")
+	player.animation_player.play("crouch")
 	player.stand.disabled = true
 	player.crouch.disabled = false
 	

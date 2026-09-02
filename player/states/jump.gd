@@ -7,9 +7,13 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	player.animated_sprite_2d.play("jump")
+	player.animation_player.play("jump")
 	player.velocity.y = JUMP_VELOCITY
-
+	
+	if player.previous_state == fall and not Input.is_action_pressed("jump"):
+		await get_tree().physics_frame
+		player.velocity.y *= .5
+		player.change_state(fall)
 
 func exit() -> void:
 	pass

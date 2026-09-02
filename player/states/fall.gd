@@ -13,7 +13,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	player.animated_sprite_2d.play("fall")
+	player.animation_player.play("fall")
 	player.gravity_multiplier = fall_gravity
 	
 	if player.previous_state == jump:
@@ -24,6 +24,8 @@ func enter() -> void:
 
 func exit() -> void:
 	player.gravity_multiplier = 1.0
+	buffer_timer = 0
+	crouch_buffer_timer = 0
 	pass
 
 # handles what happens when an input is pressed or unpressed
